@@ -62,7 +62,7 @@ function countDownBtnState() {
    if (currentDate > targetDate) {
     countdownBtn.disabled = true;
     Notiflix.Notify.failure('Chose a date in the future');
-   }else {
+   } else {
     countdownBtn.disabled = false;
     clearInterval(timerId);
     Notiflix.Notify.success('Correct date');
