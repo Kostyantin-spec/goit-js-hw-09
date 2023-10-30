@@ -1,7 +1,7 @@
 import Notiflix from 'notiflix';
 
 const formEl = document.querySelector('.form');
-const submitBtn = document.querySelector('button[type="submit"]');
+const buttonEl = document.querySelector('button[type="submit"]');
 let timerId = null;
 let promisesCount = 1;
 
@@ -9,7 +9,7 @@ formEl.addEventListener('submit', formSubmitHandler);
 
 function formSubmitHandler(e) {
   e.preventDefault();
-  submitBtn.disabled = true;
+  buttonEl.disabled = true;
 
   const elements = e.currentTarget.elements
   const delay = elements.delay.value
@@ -32,7 +32,7 @@ function showPromises() {
   if (promisesCount > Number(amount)) {
     clearInterval(timerId);
     promisesCount = 1;
-    submitBtn.disabled = false;
+    buttonEl.disabled = false;
   }
   promise.then(result => {
     Notiflix.Notify.success(result);
@@ -40,7 +40,6 @@ function showPromises() {
     Notiflix.Notify.failure(error);
   });
 }
-
 }
 function createPromise(position, delay) {
   
@@ -54,10 +53,10 @@ function createPromise(position, delay) {
   return new Promise((res, rej) => {
 
   setTimeout(() => {
-  if (shouldResolve) {
-    res(`✅ Fulfilled promise ${position} in ${delay}ms`);
+    if (shouldResolve) {
+    res(`✅ Fulfilled promise ${position} in ${delayInMs}ms`);
   } else {
-    rej(`❌ Rejected promise ${position} in ${delay}ms`);
+    rej(`❌ Rejected promise ${position} in ${delayInMs}ms`);
   }
 }, delay);
 })
